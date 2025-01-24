@@ -10,6 +10,7 @@ vim.opt.shiftwidth = 4
 vim.opt.scrolloff = 4
 vim.opt.expandtab = true
 vim.opt.undofile = true
+vim.opt.breakindent = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.cursorline = true
@@ -21,6 +22,8 @@ vim.opt.gdefault = true
 vim.opt.inccommand = "split"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.signcolumn = "yes"
+
+vim.keymap.set("n", "<C-s>", "<cmd>w<cr>")
 
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -63,9 +66,10 @@ require("lazy").setup({
                         "vim",
                         "vimdoc",
                     },
+                    auto_install = true,
                     sync_install = false,
                     highlight = { enable = true },
-                    indent = { enable = true },
+                    indent = { enable = false },
                 })
             end,
         },
@@ -77,7 +81,7 @@ require("lazy").setup({
                 vim.keymap.set("n", "<leader>f", builtin.find_files)
                 vim.keymap.set("n", "<leader>b", builtin.buffers)
                 vim.keymap.set("n", "<leader>n", function() builtin.find_files({ cwd = vim.fn.stdpath("config") }) end)
-                vim.keymap.set("n", "<leader>g", builtin.live_grep)
+                vim.keymap.set("n", "<leader>/", builtin.live_grep)
             end,
         },
         {
