@@ -24,6 +24,9 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.signcolumn = "yes"
 
 vim.keymap.set("n", "<C-s>", "<cmd>w<cr>")
+vim.keymap.set("n", "<leader>n", function()
+    vim.cmd("e " .. vim.fn.stdpath("config") .. "/init.lua")
+end)
 
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -54,6 +57,7 @@ require("lazy").setup({
                     ensure_installed = {
                         "bash",
                         "c",
+                        "c_sharp",
                         "cmake",
                         "cpp",
                         "java",
@@ -80,13 +84,16 @@ require("lazy").setup({
                 local builtin = require("telescope.builtin")
                 vim.keymap.set("n", "<leader>f", builtin.find_files)
                 vim.keymap.set("n", "<leader>b", builtin.buffers)
-                vim.keymap.set("n", "<leader>n", function() builtin.find_files({ cwd = vim.fn.stdpath("config") }) end)
+                -- vim.keymap.set("n", "<leader>n", function() builtin.find_files({ cwd = vim.fn.stdpath("config") }) end)
                 vim.keymap.set("n", "<leader>/", builtin.live_grep)
             end,
         },
         {
-            "kylechui/nvim-surround",
-            config = true,
+            "echasnovski/mini.nvim",
+            config = function()
+                require("mini.pairs").setup({})
+                require("mini.surround").setup({})
+            end,
         },
     },
 })
