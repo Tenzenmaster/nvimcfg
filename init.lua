@@ -59,14 +59,18 @@ require("lazy").setup({
                         "c",
                         "c_sharp",
                         "cmake",
+                        "css",
                         "cpp",
+                        "html",
                         "java",
+                        "javascript",
                         "lua",
                         "luadoc",
                         "make",
                         "python",
                         "rust",
                         "toml",
+                        "typescript",
                         "vim",
                         "vimdoc",
                     },
@@ -92,6 +96,7 @@ require("lazy").setup({
             "echasnovski/mini.nvim",
             config = function()
                 require("mini.pairs").setup({})
+                require("mini.splitjoin").setup({})
                 require("mini.surround").setup({})
             end,
         },
